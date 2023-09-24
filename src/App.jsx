@@ -2,9 +2,10 @@ import "./App.css";
 import { Route, Routes, useNavigate } from "react-router-dom";
 
 import LoadLandingPage from "./routs/landingPage";
-import AdminHome from "./routs/admin/home";
+import AdminHome from "./routs/admin";
 import SignUpInit from "./routs/signUp/signUpInit";
 import { useEffect, useState } from "react";
+import AdminIndex from "./routs/admin";
 
 function App() {
   // how to get to differnt pages
@@ -41,7 +42,7 @@ function App() {
       />
       <Route
         path="/admin"
-        element={isUserLoggedIn ? <AdminHome /> : <LoadLandingPage />}
+        element={isUserLoggedIn ? <AdminIndex /> : <LoadLandingPage />}
       />
     </Routes>
   );

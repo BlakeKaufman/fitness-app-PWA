@@ -1,0 +1,47 @@
+#navbar {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+
+  background-color: var(--C950);
+}
+#navbar .navItems {
+  width: 95%;
+  height: 60px;
+
+  list-style: none;
+
+  display: flex;
+
+  justify-content: center;
+
+  margin: 0 auto;
+}
+#navbar .navItems .navItem {
+  width: max-content;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 20px;
+  color: var(--C50);
+
+  opacity: 0.5;
+  position: relative;
+}
+#navbar .navItems .activeNav {
+  opacity: 1;
+}
+#navbar .navItems .navItem .imgContainer {
+  width: 20px;
+  height: 20px;
+}
+
+#navbar .navItems .navItem img {
+  filter: invert(93%) sepia(0%) saturate(28%) hue-rotate(130deg)
+    brightness(106%) contrast(106%);
+}
