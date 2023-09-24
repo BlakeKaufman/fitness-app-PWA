@@ -1,0 +1,14 @@
+.continueBTN {
+  width: 100%;
+  max-width: 250px;
+  height: 40px;
+  line-height: 40px;
+
+  text-align: center;
+  background-color: var(--C900);
+  color: var(--C200);
+
+  border-radius: 10px;
+
+  margin: 0 auto;
+}

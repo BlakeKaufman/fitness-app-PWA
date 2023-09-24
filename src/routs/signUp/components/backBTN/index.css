@@ -1,0 +1,16 @@
+.backBTN {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-right: auto;
+}
+.backBTN img {
+  transform: rotate(90deg);
+  height: 20px;
+  margin-right: 10px;
+}
+.backBTN span {
+  color: black;
+}
