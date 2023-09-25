@@ -4,6 +4,9 @@ import react from "@vitejs/plugin-react";
 
 const manifestForPlugin = {
   manifest: {
+    name: "Workout App",
+    short_name: "Workout App",
+    description: "An easy way to track your progress.",
     icons: [
       {
         src: "./vite.svg",
