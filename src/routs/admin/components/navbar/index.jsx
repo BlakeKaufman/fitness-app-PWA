@@ -1,5 +1,25 @@
 import "./index.css";
-import { workoutSplitIcon, ExerciseIcon } from "../../../../assets/icons";
+import {
+  workoutSplitIcon,
+  ExerciseIcon,
+  HomeIcon,
+} from "../../../../assets/icons";
+import { NavItem } from "./components/navItem";
+
+const navOptions = [
+  {
+    text: "Home",
+    icon: HomeIcon,
+  },
+  {
+    text: "Split",
+    icon: workoutSplitIcon,
+  },
+  {
+    text: "Exercise",
+    icon: ExerciseIcon,
+  },
+];
 export default function AdminNavBar(props) {
   function toggleNav(event) {
     const targetEvent = event.target;
@@ -8,31 +28,14 @@ export default function AdminNavBar(props) {
     props.setSelectedNav(selectedNav);
   }
 
+  const navItems = navOptions.map((item, index) => {
+    return <NavItem key={index} {...item} selctedNav={props.selctedNav} />;
+  });
+
   return (
     <section id="navbar">
       <ul className="navItems" onClick={(e) => toggleNav(e)}>
-        <li
-          className={`navItem ${
-            props.selctedNav.toLowerCase() === "split" ? "activeNav" : ""
-          }`}
-        >
-          <div className="imgContainer">
-            <img src={workoutSplitIcon} alt="workout split icon" />
-          </div>
-          Split
-          <div className="screen split"></div>
-        </li>
-        <li
-          className={`navItem ${
-            props.selctedNav.toLowerCase() === "exercise" ? "activeNav" : ""
-          }`}
-        >
-          <div className="imgContainer">
-            <img src={ExerciseIcon} alt="excersize icon" />
-          </div>
-          Exercise
-          <div className="screen exercise"></div>
-        </li>
+        {navItems}
       </ul>
     </section>
   );
