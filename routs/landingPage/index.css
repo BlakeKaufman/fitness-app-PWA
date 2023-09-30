@@ -1,0 +1,65 @@
+#loadingPage {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+
+  background-image: url("../../assets/loadingPageBackground.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-user-drag: none;
+
+  position: relative;
+}
+
+#loadingPage .contentBackground {
+  width: 100%;
+  height: fit-content;
+
+  background-color: rgba(135, 135, 135, 0.9);
+
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#loadingPage .contentBackground .content {
+  width: 95%;
+  height: fit-content;
+
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+#loadingPage h1 {
+  text-align: center;
+  line-height: 45px;
+  color: black;
+  font-size: 35px;
+  font-weight: bold;
+
+  margin: 15px 0 10px 0;
+}
+
+#loadingPage p {
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 14px;
+  text-align: center;
+}
+#loadingPage .CTA_Button {
+  width: 100%;
+  max-width: 200px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  background-color: black;
+  color: white;
+
+  border-radius: 10px;
+
+  margin: 20px auto;
+}
