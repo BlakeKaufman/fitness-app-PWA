@@ -6,6 +6,7 @@ import ExerciseIcon from "./excerise.svg";
 import HomeIcon from "./home.svg";
 import EditIcon from "./edit.svg";
 import TrophyIcon from "./trophy.svg";
+import SearchIcon from "./search.svg";
 
 export {
   CheveronArrowIcon,
@@ -15,4 +16,5 @@ export {
   HomeIcon,
   EditIcon,
   TrophyIcon,
+  SearchIcon,
 };
