@@ -7,4 +7,6 @@
   height: calc(100% - 70px);
 
   background-color: var(--C50);
+
+  position: relative;
 }

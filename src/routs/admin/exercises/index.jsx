@@ -4,6 +4,8 @@ import { CheveronArrowIcon } from "../../../assets/icons";
 import listOfExercises from "../../../../exercisesDictionar.json";
 
 import "./index.css";
+import { FullExercisePopup } from "./components/fullInfoPupup.jsx";
+// healper functions at bottom
 
 const EXERCISETYPECONSTANTS = [
   "All",
@@ -28,62 +30,38 @@ export function ExerciseLibrary() {
   const [exercises, setExercises] = useState([]);
   const [moreExercises, setMoreExercises] = useState(0);
   const [searchInput, setSearchInput] = useState("");
+  //   full exercise popup
+  const [clickedExercise, setClickedExercise] = useState("");
 
   useEffect(() => {
-    let exercises = listOfExercises;
-    // filter out selected execise type
+    const exercises = selectedExerciseTypeFunction(
+      selectedExerciseType,
+      listOfExercises
+    );
 
-    if (selectedExerciseType.toLocaleLowerCase() != "all") {
-      exercises = exercises.filter((exercise) => {
-        return (
-          exercise.primaryMuscles.filter((muscle) => {
-            if (selectedExerciseType.toLocaleLowerCase() === "back") {
-              return (
-                muscle
-                  .toLocaleLowerCase()
-                  .includes(selectedExerciseType.toLocaleLowerCase()) ||
-                muscle.toLocaleLowerCase().includes("lats")
-              );
-            } else if (selectedExerciseType.toLocaleLowerCase() === "abs") {
-              return muscle.toLocaleLowerCase().includes("abd");
-            }
-            return muscle
-              .toLocaleLowerCase()
-              .includes(selectedExerciseType.toLocaleLowerCase());
-          }).length > 0
-        );
-      });
-    }
-
-    const shownExercises = exercises
-      .slice(0, (moreExercises + 1) * 20)
-      .map((exercise, id) => {
-        return (
-          <div key={id} className="exercise">
-            <span className="name">
-              {exercise.name.length > 10
-                ? exercise.name.slice(0, 10) + "..."
-                : exercise.name}
-            </span>
-            <div className="info">
-              <span className="label">Level</span>
-              <span className="description">{exercise.level}</span>
-              <span className="label">Mucle Group</span>
-              <span className="description">{exercise.primaryMuscles}</span>
-              <span className="label">Equipment</span>
-              <span className="description">{exercise.equipment}</span>
-            </div>
-          </div>
-        );
-      });
+    const shownExercises = shownExerciseListFunction(
+      exercises,
+      moreExercises,
+      setClickedExercise
+    );
 
     setExercises(shownExercises);
   }, [selectedExerciseType, moreExercises]);
 
   useEffect(() => {
     if (!searchInput) return;
-    console.log("test");
-  }, [searchInput]);
+
+    const exercises = searchForExerciseFunction(searchInput, listOfExercises);
+
+    const shownExercises = shownExerciseListFunction(
+      exercises,
+      moreExercises,
+      setClickedExercise
+    );
+
+    setExercises(shownExercises);
+    setSelectedExerciseType("All");
+  }, [searchInput, moreExercises]);
 
   function handleDropdown(e) {
     const targetEvent = e.target;
@@ -120,11 +98,11 @@ export function ExerciseLibrary() {
     <section onClick={(e) => handleDropdown(e)} id="exerciseLibrary">
       <h1>Excersise Library</h1>
       <input
-        type="search"
+        type="input"
         name="exersizeSearch"
         id="exersizeSearch"
         placeholder="Search exercises"
-        onChange={(e) => setSearchInput(e.target.value)}
+        onKeyUp={(e) => setSearchInput(e.target.value)}
       />
       <span className="exerciseTypeLabel">Exercise Type</span>
       <div className="dropdownContainer">
@@ -144,17 +122,6 @@ export function ExerciseLibrary() {
 
       <div className="allExercisesContainer">
         {exercises}
-        {/* <div className="exercise">
-          <span className="name">3/4 sit up</span>
-          <div className="info">
-            <span className="label">Level</span>
-            <span className="description">Beginner</span>
-            <span className="label">Mucle Group</span>
-            <span className="description">Abs</span>
-            <span className="label">Equipment</span>
-            <span className="description">Bodyweight</span>
-          </div>
-        </div> */}
         <span
           onClick={() => setMoreExercises((prev) => (prev += 1))}
           className="showMoreExercisesBTN"
@@ -163,13 +130,78 @@ export function ExerciseLibrary() {
         </span>
       </div>
 
-      {/* <label htmlFor="exerciseType">Exercise Type</label>
-      <select name="exerciseType" id="exerciseType">
-        <option value="All" selected>
-          All
-        </option>
-        <option value="Back">Back</option>
-      </select> */}
+      {/* popups */}
+      <FullExercisePopup
+        setClickedExercise={setClickedExercise}
+        clickedExercise={clickedExercise}
+      />
     </section>
   );
+}
+
+// Helper functions
+function selectedExerciseTypeFunction(selectedExerciseType, exerciseList) {
+  if (selectedExerciseType.toLocaleLowerCase() != "all") {
+    return exerciseList.filter((exercise) => {
+      return (
+        exercise.primaryMuscles.filter((muscle) => {
+          if (selectedExerciseType.toLocaleLowerCase() === "back") {
+            return (
+              muscle
+                .toLocaleLowerCase()
+                .includes(selectedExerciseType.toLocaleLowerCase()) ||
+              muscle.toLocaleLowerCase().includes("lats")
+            );
+          } else if (selectedExerciseType.toLocaleLowerCase() === "abs") {
+            return muscle.toLocaleLowerCase().includes("abd");
+          } else if (selectedExerciseType.toLocaleLowerCase() === "quads") {
+            return muscle.toLocaleLowerCase().includes("quad");
+          } else if (
+            selectedExerciseType.toLocaleLowerCase() === "trapezious"
+          ) {
+            return muscle.toLocaleLowerCase().includes("traps");
+          }
+          return muscle
+            .toLocaleLowerCase()
+            .includes(selectedExerciseType.toLocaleLowerCase());
+        }).length > 0
+      );
+    });
+  }
+  return exerciseList;
+}
+
+function searchForExerciseFunction(input, exerciseList) {
+  return exerciseList.filter((exercise) => {
+    return exercise.name.toLowerCase().includes(input.toLowerCase());
+  });
+}
+
+function shownExerciseListFunction(listOfExercises, index, setClickedExercise) {
+  return listOfExercises.slice(0, (index + 1) * 20).map((exercise, id) => {
+    return (
+      <div
+        onClick={() => {
+          setClickedExercise(exercise);
+        }}
+        key={id}
+        className="exercise"
+      >
+        <div className={`screen ${exercise.name}`}></div>
+        <span className="name">
+          {exercise.name.length > 10
+            ? exercise.name.slice(0, 10) + "..."
+            : exercise.name}
+        </span>
+        <div className="info">
+          <span className="label">Level</span>
+          <span className="description">{exercise.level}</span>
+          <span className="label">Mucle Group</span>
+          <span className="description">{exercise.primaryMuscles}</span>
+          <span className="label">Equipment</span>
+          <span className="description">{exercise.equipment}</span>
+        </div>
+      </div>
+    );
+  });
 }

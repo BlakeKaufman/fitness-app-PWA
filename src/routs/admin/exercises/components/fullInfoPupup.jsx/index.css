@@ -1,0 +1,73 @@
+.fullExercisePopup {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  background-color: #e5e5e55e;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+
+  z-index: 1;
+
+  align-items: center;
+  justify-content: center;
+}
+
+/* content */
+.fullExercisePopup .exerciseContent {
+  width: 95%;
+  height: fit-content;
+
+  background-color: var(--C950);
+  color: var(--C200);
+
+  padding: 20px;
+  border-radius: 10px;
+}
+.fullExercisePopup .exerciseContent .name {
+  display: block;
+  font-size: 25px;
+  font-weight: bold;
+
+  text-align: center;
+
+  margin-bottom: 10px;
+}
+.fullExercisePopup .exerciseContent .information {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  background-color: var(--C700);
+  padding: 10px;
+
+  border-radius: 10px;
+
+  margin-bottom: 20px;
+}
+.fullExercisePopup .exerciseContent .information .label {
+  font-weight: bold;
+  color: var(--C50);
+
+  padding: 10px 0;
+  border-bottom: 1px solid var(--C200);
+}
+
+.fullExercisePopup .exerciseContent .information .description {
+  text-align: right;
+
+  padding: 10px 0;
+  border-bottom: 1px solid var(--C200);
+}
+.fullExercisePopup .exerciseContent .instructions {
+  height: 150px;
+
+  width: 90%;
+  margin: 0 auto;
+
+  overflow-y: scroll;
+}
+.fullExercisePopup .exerciseContent .instructions li:not(:last-child) {
+  margin-bottom: 10px;
+}
