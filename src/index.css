@@ -25,6 +25,8 @@
   --C800: #262626;
   --C900: #171717;
   --C950: #0a0a0a;
+
+  --popupTransition: 0.5s cubic-bezier(0, 1.13, 1, 0.99) left;
 }
 
 * {
@@ -52,7 +54,11 @@ body {
   top: 0;
   left: 0;
 }
-
+.disable-zoom {
+  touch-action: none; /* Prevent double-tap zoom on mobile devices */
+  user-select: none; /* Optionally prevent text selection */
+  /* Add any other styles you want for the input element */
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

@@ -33,6 +33,7 @@ export default function SignUpInit(props) {
           type="text"
           name="nameInput"
           id="nameInput"
+          className="disable-zoom"
           placeholder="Enter Name"
           onChange={(input) => setName(input.target.value)}
         />

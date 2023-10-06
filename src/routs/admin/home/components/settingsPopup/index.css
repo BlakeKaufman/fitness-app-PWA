@@ -1,0 +1,58 @@
+.settingsPopup {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  background-color: var(--C50);
+  transition: var(--popupTransition);
+}
+.settingsPopup .settingsContent {
+  width: 95%;
+  margin: 0 auto;
+}
+.settingsPopup .settingsContent .top {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  margin: 30px 0 10px;
+}
+.settingsPopup .settingsContent img {
+  width: 25px;
+  height: 25px;
+}
+
+.settingsPopup .settingsContent h1 {
+  width: calc(100% - 50px);
+  display: block;
+
+  font-size: 35px;
+  text-align: center;
+}
+
+/* settings elements */
+.settingsPopup .settingsContent .option {
+  width: 100%;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 2px solid var(--C500);
+
+  position: relative;
+}
+
+.settingsPopup .settingsContent .option img {
+  width: 25px;
+  height: 25px;
+}
+.settingsPopup .settingsContent .option .optionName {
+  font-size: 25px;
+
+  margin-left: 10px;
+}

@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import "./index.css";
-import { EditIcon, TrophyIcon } from "../../../assets/icons";
+import { EditIcon, SettingsIcon, TrophyIcon } from "../../../assets/icons";
 import { GeneratedQuote } from "./components/quote";
+import { SettingsPopup } from "./components/settingsPopup";
 
 export function HomePage() {
   const [usersName, setUsersName] = useState("");
   const [workoutCounter, setWorkoutCounter] = useState(0);
+  const [displaySettings, setDisplaySettings] = useState(false);
 
   useEffect(() => {
     const usersName = JSON.parse(
@@ -20,8 +22,8 @@ export function HomePage() {
     <section id="homePage">
       <section className="welcomeBanner">
         <span className="welcomeMessage">Welcome, {usersName}</span>
-        <div className="imgContainer">
-          <img src={EditIcon} alt="edit icon" />
+        <div onClick={() => setDisplaySettings(true)} className="imgContainer">
+          <img src={SettingsIcon} alt="edit icon" />
         </div>
       </section>
       <section className="completedWorkouts">
@@ -39,6 +41,10 @@ export function HomePage() {
       </section>
 
       <GeneratedQuote />
+      <SettingsPopup
+        isDisplayed={displaySettings}
+        setDisplayFunc={setDisplaySettings}
+      />
     </section>
   );
 }
