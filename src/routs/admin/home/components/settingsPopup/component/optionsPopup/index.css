@@ -11,3 +11,7 @@
 
   transition: var(--popupTransition);
 }
+.optionsPopup .optionsContent {
+  width: 100%;
+  height: calc(100% - 55px);
+}

@@ -1,3 +1,4 @@
 import AdminNavBar from "./navbar";
+import { BackBTNNoText } from "./backButtonNoText";
 
-export { AdminNavBar };
+export { AdminNavBar, BackBTNNoText };
